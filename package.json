@@ -2,6 +2,10 @@
   "name": "overshom-utils",
   "version": "1.0.0",
   "description": "Collection of TypeScript utils to solve trivial tasks in browser and NodeJs environments",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/overshom/overshom-utils"
+  },
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src",
