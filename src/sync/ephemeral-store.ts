@@ -1,30 +1,38 @@
 interface IEphemeralContainer<T> {
     value: T
-    expire: number
+    readonly expire: number
 }
 
-const TWO_HOURS = 72e5
-const FOUR_HOURS = TWO_HOURS * 2
+const FOUR_HOURS = 144e5
+const ALMOST_ONE = .99
 
 /**
  * EphemeralStore is a Map-like structure with a value stored no longer than specified lifetime
  */
-export class EphemeralStore<T = {}, K = string> {
-    private readonly map: Map<K, IEphemeralContainer<T>>
+export class EphemeralStore<T = unknown, K = string> {
+    public readonly map: Map<K, IEphemeralContainer<T>>
+    public readonly minimumGarbageCollectionDelay: number
+    public readonly lifetime: number
     private lastGarbageCollectionTime: number
 
-    constructor(
-        public minimumGarbageCollectionDelay = TWO_HOURS,
-        public defaultLifetime = FOUR_HOURS,
+    constructor({
+        lifetime,
+        minimumGarbageCollectionDelay,
+    }: {
+        lifetime?: number
+        minimumGarbageCollectionDelay?: number
+    }
     ) {
-        if (defaultLifetime <= minimumGarbageCollectionDelay) {
-            throw new Error('EphemeralStore defaultLifetime should be bigger than GC delay')
+        this.lifetime = lifetime ?? FOUR_HOURS
+        this.minimumGarbageCollectionDelay = minimumGarbageCollectionDelay ?? this.lifetime * ALMOST_ONE
+        if (this.lifetime <= this.minimumGarbageCollectionDelay) {
+            throw new Error('EphemeralStore lifetime should be bigger than GC delay')
         }
         this.map = new Map<K, IEphemeralContainer<T>>()
         this.lastGarbageCollectionTime = Date.now()
     }
 
-    public set(key: K, value: T, lifetime = this.defaultLifetime): T {
+    public set(key: K, value: T, lifetime = this.lifetime): T {
         if (lifetime <= this.minimumGarbageCollectionDelay) {
             throw new Error('EphemeralStore value lifetime should be bigger than GC delay')
         }
@@ -55,7 +63,7 @@ export class EphemeralStore<T = {}, K = string> {
             return
         }
         this.map.forEach((container, key) => {
-            if (now > container.expire) {
+            if (now >= container.expire) {
                 this.map.delete(key)
             }
         })
