@@ -1,4 +1,4 @@
-import { randi } from '../src'
+import { randi } from '.'
 
 describe('randi', () => {
     it('should generate integer', () => {
