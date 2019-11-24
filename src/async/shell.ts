@@ -1,6 +1,6 @@
 import { spawn, SpawnOptionsWithoutStdio } from 'child_process'
 
-export interface ShellRawResult {
+export interface IShellRawResult {
     stderr: string
     stdout: string
     code: number
@@ -11,7 +11,7 @@ export class ErrorShell extends Error {
     public stdout: string
     public code: number
 
-    constructor({ stderr, stdout, code }: ShellRawResult) {
+    constructor({ stderr, stdout, code }: IShellRawResult) {
         super(stderr)
         this.stderr = stderr
         this.stdout = stdout
@@ -19,7 +19,7 @@ export class ErrorShell extends Error {
     }
 }
 
-export const shellRaw = async (cmd: string, options: SpawnOptionsWithoutStdio = {}): Promise<ShellRawResult> => {
+export const shellRaw = async (cmd: string, options: SpawnOptionsWithoutStdio = {}): Promise<IShellRawResult> => {
     const proc = spawn(cmd, {
         shell: true,
         detached: true,
