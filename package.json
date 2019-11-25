@@ -6,6 +6,13 @@
     "type": "git",
     "url": "https://github.com/overshom/overshom-utils"
   },
+  "keywords": [
+    "TypeScript",
+    "Utils",
+    "Helpers",
+    "Browser utils",
+    "User utils"
+  ],
   "main": "dist/src/index.js",
   "scripts": {
     "start": "ts-node src",
