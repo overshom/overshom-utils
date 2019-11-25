@@ -13,7 +13,7 @@
     "Browser utils",
     "User utils"
   ],
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src",
     "build-dev": "rimraf dist && tsc --p tsconfig.json",
