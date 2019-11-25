@@ -10,7 +10,7 @@ describe('ephemeral store', () => {
             lifetime: ONE_SECOND
         })
         store.set(key, true)
-        await sleep(100)
+        await sleep(ONE_SECOND * .1)
         expect(store.get(key)).toMatchObject({ value: true })
         await sleep(ONE_SECOND)
         expect(store.get(key)).toBe(undefined)
