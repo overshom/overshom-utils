@@ -5,6 +5,10 @@ export interface IRetryableConfig {
     delay?: number
 }
 
+/**
+ * Creates retryable function which retries specified async lambda for specified attempts.
+ * Throws error when final attempt failed.
+ */
 export const createRetryable = (scopedConfig: IRetryableConfig) => {
     const internalRetryable = async <T>(fn: () => Promise<T>, config?: IRetryableConfig): Promise<T> => {
         const { delay = 0 } = config ?? scopedConfig
