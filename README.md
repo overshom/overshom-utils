@@ -1,5 +1,9 @@
 # overshom-utils
 
+<a href="https://www.npmjs.com/package/overshom-utils">
+    <img src="https://img.shields.io/npm/v/overshom-utils.svg" alt="npm package" />
+</a>
+
 Collection of TypeScript utils to solve trivial tasks in browser and NodeJs environments.
 
 # Installation
@@ -24,3 +28,15 @@ const pulsar = async () => {
 
 pulsar()
 ```
+
+## List of async utils
+
+- sleep
+
+## List of sync utils
+
+- randi
+
+# TODO
+
+Integrate Circle CI + badge
