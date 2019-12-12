@@ -1,6 +1,7 @@
 {
   "name": "overshom-utils",
-  "version": "1.0.6",
+  "version": "1.0.7",
+  "author": "Oleksii Shnyra",
   "description": "Collection of TypeScript utils to solve trivial tasks in browser and NodeJs environments",
   "repository": {
     "type": "git",
@@ -13,6 +14,7 @@
     "Browser utils",
     "User utils"
   ],
+  "license": "ISC",
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src",
@@ -20,8 +22,6 @@
     "build": "rimraf dist && tsc --p tsconfig.prod.json",
     "test": "jest"
   },
-  "author": "Oleksii Shnyra",
-  "license": "ISC",
   "devDependencies": {
     "@types/jest": "24.0.23",
     "@types/node": "12.11.1",
