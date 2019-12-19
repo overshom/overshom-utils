@@ -1,4 +1,4 @@
-import { ascendingNum, descendingNum, ascendingStr, descendingStr, ascendingMapping, descendingMapping } from './sort'
+import { ascendingNum, descendingNum, ascendingStr, descendingStr, ascendingMapping, descendingMapping } from '.'
 
 describe('sorting order', () => {
     it('number ASC', () => {
